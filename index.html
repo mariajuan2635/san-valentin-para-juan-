@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín 💖</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            color: #ff4081;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: #ff80ab;
+            color: white;
+        }
+        .no {
+            background-color: #ff1744;
+            color: white;
+            position: absolute;
+        }
+        #message {
+            font-size: 24px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #loveImage {
+            width: 300px;
+            height: auto;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Juan, ¿quieres ser mi San Valentín? 💖</h1>
+        <img id="loveImage" src="https://source.unsplash.com/300x300/?love,romantic" alt="Imagen romántica">
+        <div class="buttons">
+            <button class="yes" onclick="sayYes()">Sí 💕</button>
+            <button class="no" id="noButton" onclick="sayNo()">No</button>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let loveImages = [
+            "https://source.unsplash.com/300x300/?couple,romance",
+            "https://source.unsplash.com/300x300/?heart,love",
+            "https://source.unsplash.com/300x300/?kiss,romantic",
+            "https://source.unsplash.com/300x300/?flowers,love",
+            "https://source.unsplash.com/300x300/?valentines,couple"
+        ];
+
+        function sayYes() {
+            document.body.innerHTML = `
+                <div class="container">
+                    <h1>Gracias por decir que sí, quieres serlo. Yo sabía 💕</h1>
+                    <p>Por este y más San Valentín juntos.</p>
+                    <p>Te amo, <strong>Juan Manuel Alcalá Lucio</strong>.</p>
+                    <p>Te amo, chiquito 💗</p>
+                    <img src="https://source.unsplash.com/300x300/?love,heart" alt="Imagen romántica">
+                </div>
+            `;
+        }
+
+        function sayNo() {
+            let message = document.getElementById("message");
+            let noButton = document.getElementById("noButton");
+            let loveImage = document.getElementById("loveImage");
+
+            noClickCount++;
+
+            if (noClickCount === 1) {
+                message.textContent = "¿Por qué no? 😢";
+            } else if (noClickCount === 2) {
+                message.textContent = "¿Estás seguro? 🥺";
+            } else {
+                // Hace que el botón se mueva
+                let x = Math.random() * (window.innerWidth - 100);
+                let y = Math.random() * (window.innerHeight - 50);
+                noButton.style.left = `${x}px`;
+                noButton.style.top = `${y}px`;
+            }
+
+            // Cambia la imagen por una nueva romántica
+            loveImage.src = loveImages[Math.floor(Math.random() * loveImages.length)];
+        }
+    </script>
+
+</body>
+</html>
